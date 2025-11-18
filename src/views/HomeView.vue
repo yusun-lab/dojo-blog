@@ -1,25 +1,31 @@
 <template>
-  <div class="home">Home</div>
-  <p ref="p">My name is {{ name }} and my age is {{ age }}</p>
-  <button @click="handleClick">Click me</button>
-  <button @click="age++">add 1 to age</button>
-  <input type="text" v-model="name" />
+  <div class="home">
+    <h1>Home</h1>
+    <h2>Refs</h2>
+    <p>{{ playerOne.name }} - {{ playerOne.age }}</p>
+    <button @click="updatePlayerOne">Update player one</button>
+
+    <h2>Reactive</h2>
+    <p>{{ playerTwo.name }} - {{ playerTwo.age }} - {{ nameTwo }}</p>
+    <button @click="updatePlayerTwo">Update player two</button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
-console.log("setup");
+const playerOne = ref({ name: "Haaland", age: 24 });
+const playerTwo = reactive({ name: "Mbappé", age: 25 });
 
-// const p = ref<HTMLParagraphElement | null>(null);
+const nameOne = ref("Haaland");
+const nameTwo = reactive("Mbappé"); // it's a  string, primitive value, not an object. We can't use primitive values with reactive.
 
-const name = ref("mario"); // const doesn't mean the value can't be changed, it just means the reference object is a constant and can't be changed
-const age = ref(30);
-
-const handleClick = () => {
-  name.value = "luigi";
-  age.value = 40;
+const updatePlayerOne = () => {
+  playerOne.value.age = 58;
 };
 
-const score = ref(5);
+const updatePlayerTwo = () => {
+  playerTwo.age = 59;
+  nameTwo = reactive("Yamal"); // nameTwo is a constant, it can't be changed.
+};
 </script>
