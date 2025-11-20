@@ -1,47 +1,23 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <input type="text" v-model="search" />
-    <p>search term - {{ search }}</p>
-    <ol>
-      <li v-for="name in matchingNames" :key="name">{{ name }}</li>
-    </ol>
-    <button @click="handleClick">stop watching</button>
+    <!-- :posts="posts" - Pass the 'posts' ref array as a prop named 'posts' to PostList component.
+         The prop name (left side) must match what the child component defines in its props.
+         The value (right side) is the data from this component being passed down. -->
+    <PostList :posts="articles" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch, watchEffect } from "vue";
+import PostList from "../components/PostList.vue";
+import { ref } from "vue";
 
-const search = ref("");
-const names = ref([
-  "Haaland",
-  "Mbappé",
-  "Bellingham",
-  "Yamal",
-  "Zabiri",
-  "Vinicius",
-  "Dembele",
+const articles = ref([
+  {
+    title: "welcome to the blog",
+    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nunc, vitae aliquam nisl nunc vitae nisl. Sed vitae nisl eget nisl aliquam tincidunt. Nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nunc, vitae aliquam nisl nunc vitae nisl. Sed vitae nisl eget nisl aliquam tincidunt.",
+    id: 1,
+  },
+  { title: "top 5 CSS tips", body: "Lorem ipsum", id: 2 },
 ]);
-
-// watch() returns a stop function that can be called to stop watching
-// The variable name 'stopwatch' is arbitrary - you could name it anything
-const stopwatch = watch(search, () => {
-  console.log("watch function ran");
-});
-
-// watchEffect() also returns a stop function that can be called to stop the effect
-// The variable name 'cleanupEffect' is arbitrary - you could name it anything
-const cleanupEffect = watchEffect(() => {
-  console.log("watch effect function ran", search.value);
-});
-
-const matchingNames = computed(() => {
-  return names.value.filter((name) => name.includes(search.value));
-});
-
-const handleClick = () => {
-  stopwatch(); // stops the watch function - permanently stops the watcher
-  cleanupEffect(); // stops the watch effect function - permanently stops the effect
-};
 </script>
