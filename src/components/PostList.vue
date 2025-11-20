@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, onMounted, onUnmounted, onUpdated } from "vue";
 import SinglePost from "./SinglePost.vue";
 
 interface Post {
@@ -20,5 +20,7 @@ const props = defineProps<{
   posts: Post[];
 }>();
 
-console.log(props.posts);
+onMounted(() => console.log("component mounted"));
+onUnmounted(() => console.log("component unmounted"));
+onUpdated(() => console.log("component updated"));
 </script>
