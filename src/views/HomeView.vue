@@ -1,10 +1,11 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <PostList v-if="showPosts" :posts="posts" />
-    <button @click="showPosts = !showPosts">toggle posts</button>
-    <!-- .pop() is a JavaScript array method that removes the last element from the array and returns it -->
-    <button @click="posts.pop()">delete a post</button>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length">
+      <PostList :posts="posts" />
+    </div>
+    <div v-else>loading...</div>
   </div>
 </template>
 
@@ -12,14 +13,25 @@
 import PostList from "../components/PostList.vue";
 import { ref } from "vue";
 
-const posts = ref([
-  {
-    title: "welcome to the blog",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nunc, vitae aliquam nisl nunc vitae nisl. Sed vitae nisl eget nisl aliquam tincidunt. Nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nunc, vitae aliquam nisl nunc vitae nisl. Sed vitae nisl eget nisl aliquam tincidunt.",
-    id: 1,
-  },
-  { title: "top 5 CSS tips", body: "Lorem ipsum", id: 2 },
-]);
+const posts = ref([]);
+const error = ref<string | null>(null);
 
-const showPosts = ref(true);
+const load = async () => {
+  try {
+    let data = await fetch("http://localhost:3000/posts");
+    if (!data.ok) {
+      throw new Error("no data available");
+    }
+    posts.value = await data.json();
+  } catch (err) {
+    if (err instanceof Error) {
+      error.value = err.message;
+    } else {
+      error.value = "An unknown error occurred";
+    }
+    console.log(error.value);
+  }
+};
+
+load();
 </script>
