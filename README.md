@@ -2,12 +2,18 @@
 
 A modern blog application built with Vue 3, TypeScript, and Vue Router. This project showcases a single-page application with dynamic routing and component-based architecture.
 
+## 🌐 Live Demo
+
+Check out the live demo: [https://dojo-blog-pi.vercel.app/](https://dojo-blog-pi.vercel.app/)
+
 ## ✨ Features
 
 - 📝 View blog posts in a clean, responsive layout
 - 🔍 View individual post details
 - ⚡ Built with Vue 3's Composition API
 - 🛠 TypeScript support for better development experience
+- 📱 Fully responsive design
+- 🚀 Deployed on Vercel for seamless CI/CD
 
 ## 🚀 Getting Started
 
@@ -37,6 +43,29 @@ A modern blog application built with Vue 3, TypeScript, and Vue Router. This pro
    ```
    The application will be available at `http://localhost:8080`
 
+### Building for Production
+
+```bash
+npm run build
+```
+
+## 🚀 Deployment
+
+This project is deployed on [Vercel](https://vercel.com/). Any push to the `main` branch will trigger an automatic deployment.
+
+### Manual Deployment
+
+1. Install Vercel CLI (if not already installed)
+
+   ```bash
+   npm install -g vercel
+   ```
+
+2. Deploy to Vercel
+   ```bash
+   vercel --prod
+   ```
+
 ## 🛠 Available Scripts
 
 - `npm run serve` - Start development server with hot-reload
@@ -49,6 +78,8 @@ src/
 ├── assets/          # Static assets
 ├── components/      # Reusable Vue components
 ├── composables/     # Vue 3 composable functions
+│   ├── getPost.ts   # Single post data fetching
+│   └── getPosts.ts  # Posts list data fetching
 ├── router/          # Vue Router configuration
 ├── views/           # Page components
 └── App.vue          # Root component
@@ -57,3 +88,13 @@ src/
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
