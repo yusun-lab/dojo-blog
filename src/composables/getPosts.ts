@@ -6,11 +6,12 @@ const getPosts = () => {
 
   const load = async () => {
     try {
-      let data = await fetch("http://localhost:3000/posts");
+      let data = await fetch("/data/db.json");
       if (!data.ok) {
         throw new Error("no data available");
       }
-      posts.value = await data.json();
+      const json = await data.json();
+      posts.value = json.posts;
     } catch (err) {
       if (err instanceof Error) {
         error.value = err.message;

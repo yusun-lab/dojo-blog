@@ -12,11 +12,14 @@ const getPost = (id: string | number) => {
 
   const load = async () => {
     try {
-      let data = await fetch("http://localhost:3000/posts/" + id);
+      let data = await fetch("/data/db.json");
       if (!data.ok) {
         throw new Error("that post doesn't exist");
       }
-      post.value = await data.json();
+      const json = await data.json();
+      post.value = await json.posts.find(
+        (p: any) => p.id.toString() === id.toString()
+      );
     } catch (err) {
       if (err instanceof Error) {
         error.value = err.message;
