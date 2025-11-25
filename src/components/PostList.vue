@@ -14,6 +14,7 @@ interface Post {
   title: string;
   id: string | number;
   body: string;
+  tags: string[];
 }
 
 const props = defineProps<{
