@@ -1,19 +1,59 @@
-# dojo-blog
+# Dojo Blog
 
-## Project setup
+A modern blog application built with Vue 3, TypeScript, and Vue Router. This project showcases a single-page application with dynamic routing and component-based architecture.
+
+## ✨ Features
+
+- 📝 View blog posts in a clean, responsive layout
+- 🔍 View individual post details
+- ⚡ Built with Vue 3's Composition API
+- 🛠 TypeScript support for better development experience
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v7 or higher)
+
+### Installation
+
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/yusun-lab/dojo-blog.git
+   cd dojo-blog
+   ```
+
+2. Install dependencies
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server
+   ```bash
+   npm run serve
+   ```
+   The application will be available at `http://localhost:8080`
+
+## 🛠 Available Scripts
+
+- `npm run serve` - Start development server with hot-reload
+- `npm run build` - Build for production with minification
+
+## 📁 Project Structure
+
 ```
-npm install
+src/
+├── assets/          # Static assets
+├── components/      # Reusable Vue components
+├── composables/     # Vue 3 composable functions
+├── router/          # Vue Router configuration
+├── views/           # Page components
+└── App.vue          # Root component
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 🤝 Contributing
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Contributions are welcome! Please feel free to submit a Pull Request.
